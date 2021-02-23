@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+        // Run DOM script
+        document.addEventListener("DOMContentLoaded", () =>{
+            let right = document.querySelector('.right');
+            right.addEventListener('click', (e)=>{
+                right.classList.add("green");
+                document.querySelector('#response1').innerHTML = 'Correct!';
+                document.querySelectorAll('.wrong').forEach(w =>{
+                    w.classList.remove("red");
+                });
+            });
+            let wrongs = document.querySelectorAll('.wrong');
+            for (let i = 0; i < wrongs.length; i++){
+                wrongs[i].addEventListener('click',(e) =>{
+                    if(e.target.innerHTML == '8') {
+                        wrongs[i].classList.add("red");
+                        document.querySelector('#ten').classList.remove("red");
+
+
+                    }
+                    else{
+                        wrongs[i].classList.add("red");
+                        document.querySelector('#eight').classList.remove("red");
+
+                    }
+                    document.querySelector('#response1').innerHTML = 'Incorrect!';
+                    document.querySelector('.right').classList.remove("green");
+                    console.log(e.target)
+                });
+
+            }
+            // TODO: Add code to check answers to questions
+            document.querySelector("#checkAnswer").addEventListener('click', (e) =>{
+                let input = document.querySelector('input');
+
+                if(input.value.trim().replace(/\.$/, "") === '5' || input.value.trim().toLowerCase().replace(/\.$/, "") === 'five'){
+                    input.classList.add("green");
+                    document.querySelector('#response2').innerHTML = 'Correct!';
+                    console.log(input.value)
+
+                }
+                else{
+                    input.classList.remove("green");
+                    input.classList.add("red");
+                    document.querySelector('#response2').innerHTML = 'Incorrect!';
+
+                }
+
+            })
+        })
+
+
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container center">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What Is the Smallest Perfect Number?</h3>
+                <div class="btn-answers">
+
+                        <button class="wrong" id="six">8</button>
+                         <button class="right" id="eight" >6</button>
+                        <button class="wrong" id="ten" >10</button>
+            </div>
+                <p id="response1"></p>
+                </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What Is log<sub>2</sub> 32?</h3>
+                <!-- TODO: Add free response question here -->
+                    <input type="text" id="text"/>
+                    <button id="checkAnswer">Check Answer</button>
+                    <p id="response2"></p>
+            </div>
+
+        </div>
+
+    </body>
+</html>
